@@ -11,7 +11,7 @@ local ClientData = { loaded = false, job = nil, jobGrade = 0, currentLocation = 
 RegisterNetEvent("tpz_core:getPlayerJob")
 AddEventHandler("tpz_core:getPlayerJob", function(data)
     ClientData.job      = data.job
-    ClientData.jobGrade = tonumber(data.jobGrade)
+    ClientData.jobGrade = data.jobGrade
 end)
 
 RegisterNetEvent('tpz_core:isPlayerReady')
