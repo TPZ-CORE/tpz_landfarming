@@ -114,7 +114,7 @@ function WaterAnimation()
 	FreezeEntityPosition(PlayerPedId(), true)
 	ClearPedTasks(PlayerPedId())
 
-    TaskStartScenarioInPlace(PlayerPedId(), GetHashKey("WORLD_PLAYER_CHORES_BUCKET_POUR_HIGH"), 7000, true, false, false, false)
+    TaskStartScenarioInPlace(PlayerPedId(), joaat("WORLD_PLAYER_CHORES_BUCKET_POUR_HIGH"), 7000, true, false, false, false)
     Wait(6000)
 
 	Citizen.Wait(50)
