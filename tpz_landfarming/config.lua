@@ -2,7 +2,7 @@ Config = {}
 
 Config.Keys = { ['G'] = 0x760A9C6F, ['E'] = 0xCEFD9220, ['BACKSPACE'] = 0x156F7119, ["SPACEBAR"] = 0xD9D0E1C0 }
 
-Config.DevMode     = true
+Config.DevMode     = false
 Config.Debug       = false
 
 Config.TPZLeveling = false
