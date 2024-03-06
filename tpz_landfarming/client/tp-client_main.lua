@@ -8,12 +8,6 @@ local ClientData = { loaded = false, job = nil, jobGrade = 0, currentLocation = 
 --[[ Base Events  ]]--
 -----------------------------------------------------------
 
-RegisterNetEvent("tpz_core:getPlayerJob")
-AddEventHandler("tpz_core:getPlayerJob", function(data)
-    ClientData.job      = data.job
-    ClientData.jobGrade = data.jobGrade
-end)
-
 RegisterNetEvent('tpz_core:isPlayerReady')
 AddEventHandler("tpz_core:isPlayerReady", function()
 
@@ -56,6 +50,11 @@ if Config.DevMode then
 
 end
 
+RegisterNetEvent("tpz_core:getPlayerJob")
+AddEventHandler("tpz_core:getPlayerJob", function(data)
+    ClientData.job      = data.job
+    ClientData.jobGrade = data.jobGrade
+end)
 
 -----------------------------------------------------------
 --[[ General Events  ]]--
