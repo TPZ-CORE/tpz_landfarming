@@ -11,44 +11,42 @@ local ClientData = { loaded = false, job = nil, jobGrade = 0, currentLocation = 
 RegisterNetEvent('tpz_core:isPlayerReady')
 AddEventHandler("tpz_core:isPlayerReady", function()
 
-    if Config.DevMode then 
-        return 
-    end
-
-    CreateLocationActionPrompts()
-    CreateLocationNPCPrompts()
-
     TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(data) 
         
         ClientData.job, ClientData.jobGrade = data.job, data.jobGrade
 
         ClientData.loaded = true
-    end)
 
-    TriggerServerEvent('tpz_landfarming:requestCurrentHour')
-    TriggerServerEvent("tpz_landfarming:onCharacterSelect")
-end)
-
-
-if Config.DevMode then
-    Citizen.CreateThread(function ()
-
-        CreateLocationActionPrompts()
-        CreateLocationNPCPrompts()
-
-        TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(data) 
-        
-            ClientData.job, ClientData.jobGrade = data.job, data.jobGrade
-    
-            ClientData.loaded = true
-        end)
-    
         TriggerServerEvent('tpz_landfarming:requestCurrentHour')
         TriggerServerEvent("tpz_landfarming:onCharacterSelect")
 
     end)
 
-end
+end)
+
+
+Citizen.CreateThread(function ()
+
+    if Config.DevMode then
+
+        TriggerEvent("tpz_core:ExecuteServerCallBack", "tpz_core:getPlayerData", function(data) 
+        
+            if data == nil then
+                return
+            end
+            
+            ClientData.job, ClientData.jobGrade = data.job, data.jobGrade
+    
+            ClientData.loaded = true
+            
+            TriggerServerEvent('tpz_landfarming:requestCurrentHour')
+            TriggerServerEvent("tpz_landfarming:onCharacterSelect")
+    
+        end)
+
+    end
+
+end)
 
 RegisterNetEvent("tpz_core:getPlayerJob")
 AddEventHandler("tpz_core:getPlayerJob", function(data)
@@ -134,6 +132,9 @@ end)
 
 
 Citizen.CreateThread(function()
+
+    CreateLocationActionPrompts()
+    CreateLocationNPCPrompts()
 
     while true do
         Citizen.Wait(0)
